@@ -10,5 +10,5 @@ grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 cv2.imshow('Grayscale Image', grayscale_image)
 cv2.waitKey(0)
 
-# Save the loaded image
+# Save the result
 cv2.imwrite('grayscale_image.jpg', grayscale_image)
