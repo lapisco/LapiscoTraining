@@ -3,9 +3,10 @@ import cv2
 # Read a rgb image
 image = cv2.imread('image.jpg')
 
-# Transform to grayscale
+# Transform to HSV
 hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
+# Split the HSV channels
 h, s, v = cv2.split(hsv_image)
 
 # Show the HSV image and its channels
