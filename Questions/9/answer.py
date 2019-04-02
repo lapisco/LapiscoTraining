@@ -14,11 +14,11 @@ cv2.waitKey(0)
 rows, cols = grayscale_image.shape[:2]
 
 # Save all pixels in a txt file
-with open('result.txt', 'w') as infile:
+with open('result.txt', 'w') as outfile:
     for row in range(rows):
         for col in range(cols):
-            infile.write(str(grayscale_image[row, col]) + ' ')
-        infile.write('\n')
+            outfile.write(str(grayscale_image[row, col]) + ' ')
+        outfile.write('\n')
 
 
 

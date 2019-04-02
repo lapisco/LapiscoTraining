@@ -22,7 +22,7 @@ for row in range(rows):
         threshold_matrix[row, col] = grayscale_image[row, col]
 
 # Save all pixels in a txt file
-with open('result.txt', 'w') as infile:
+with open('result.txt', 'w') as outfile:
     for row in range(rows):
         for col in range(cols):
             # Define the limits of the threshold
@@ -31,5 +31,5 @@ with open('result.txt', 'w') as infile:
             else:
                 threshold_matrix[row, col] = 255
 
-            infile.write(str(threshold_matrix[row, col]) + ' ')
-        infile.write('\n')
+            outfile.write(str(threshold_matrix[row, col]) + ' ')
+        outfile.write('\n')
