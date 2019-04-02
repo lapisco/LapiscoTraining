@@ -10,7 +10,10 @@ grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 median_image = cv2.medianBlur(grayscale_image, ksize=5)
 blur_image = cv2.blur(grayscale_image, ksize=(5, 5))
 
-# Show the HSV image and its channels
+# Show the input image
+cv2.imshow('Input grayscale image', grayscale_image)
+
+# Show the results of median and blur filters
 cv2.imshow('Median filter result', median_image)
 cv2.imshow('Blur filter result', blur_image)
 

@@ -9,7 +9,10 @@ grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # Apply Canny filter (change the inferior and superior limit and see the difference)
 canny_image = cv2.Canny(grayscale_image, 80, 180)
 
-# Show the HSV image and its channels
+# Show the input image
+cv2.imshow('Input grayscale image', grayscale_image)
+
+# Show the result of the canny filter
 cv2.imshow('Canny filter result', canny_image)
 
 cv2.waitKey(0)
