@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from numba import njit
 
+seed = (0, 0)
 
 @njit
 def region_growing(image, seed=None):
@@ -59,6 +60,15 @@ def region_growing(image, seed=None):
     return segmented
 
 
+def mouse_event(event, x, y, flags, param):
+    # Verify if the left button is pressed
+    if event == cv2.EVENT_LBUTTONDOWN:
+        global seed
+
+        # Update the seed point
+        seed = (y, x)
+
+
 if __name__ == '__main__':
     # Read a rgb image
     image = cv2.imread('image.jpg')
@@ -66,9 +76,14 @@ if __name__ == '__main__':
     # Transform to grayscale
     grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
+    # Create a window, show the original image and wait for the click
+    cv2.namedWindow('Original Image', 1)
+    cv2.imshow('Original Image', grayscale_image)
+    cv2.setMouseCallback('Original Image', mouse_event)
+    cv2.waitKey(0)
+
     # Apply the region growing algorithm
-    segmented_image = region_growing(grayscale_image,
-                                     seed=(int(grayscale_image.shape[0]/2), int(grayscale_image.shape[1]/2)))
+    segmented_image = region_growing(grayscale_image, seed)
 
     # Show the result
     cv2.imshow('Segmented image', segmented_image)
