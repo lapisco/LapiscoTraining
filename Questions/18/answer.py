@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 # Read a rgb image
 image = cv2.imread('image.jpg')
@@ -8,7 +7,7 @@ image = cv2.imread('image.jpg')
 grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # Apply the Laplacian Filter
-laplace = cv2.Laplacian(grayscale_image, ddepth=cv2.CV_16S, ksize=3)
+laplace = cv2.Laplacian(grayscale_image, ddepth=cv2.CV_64F, ksize=3)
 
 # Convert to uint8
 laplace = cv2.convertScaleAbs(laplace)
