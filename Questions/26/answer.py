@@ -10,11 +10,10 @@ def region_growing(image):
     # Get the rows and columns of the image
     rows, cols = image.shape[:2]
 
-
-
     # Create a matrix that will contain the segmented region
     segmented = np.zeros_like(image)
 
+    # Create a variable to store the number of objects found
     num_objects = 0
 
     for ext_row in range(rows):
