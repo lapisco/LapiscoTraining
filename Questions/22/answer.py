@@ -4,7 +4,6 @@ from numba import njit
 
 seed = (0, 0)
 
-
 @njit
 def region_growing(image, seed=None):
 
@@ -70,6 +69,28 @@ def mouse_event(event, x, y, flags, param):
         seed = (y, x)
 
 
+def get_centroid(image):
+
+    # Initialize the centroid
+    xc, yc = 0, 0
+
+    rows, cols = image.shape[:2]
+    count = 0
+    # Loop through the image and find the points of the square
+    for row in range(rows):
+        for col in range(cols):
+            if image[row, col] == 255:
+                xc += row
+                yc += col
+                count += 1
+
+    # Calculates the mean point
+    xc = int(xc / count)
+    yc = int(yc / count)
+
+    return xc, yc
+
+
 if __name__ == '__main__':
     # Read a rgb image
     image = cv2.imread('image.jpg')
@@ -86,7 +107,19 @@ if __name__ == '__main__':
     # Apply the region growing algorithm
     segmented_image = region_growing(grayscale_image, seed)
 
-    # Show the result
-    cv2.imshow('Segmented image', segmented_image)
-    cv2.waitKey(0)
+    # With the segmented image we can calculate the centroid
+    xc, yc = get_centroid(segmented_image)
 
+    # Create a rgb image
+    rows, cols = segmented_image.shape[:2]
+    new_img = np.zeros([rows, cols, 3], np.uint8)
+
+    # Paint the segmented region as blue
+    new_img[np.where(segmented_image == 255)] = [255, 0, 0]
+
+    # Draw a circle in the centroid of the segmented region
+    cv2.circle(new_img, (yc, xc), 5, (0, 255, 0), -1)
+
+    # Show the result
+    cv2.imshow('Segmented image', new_img)
+    cv2.waitKey(0)
