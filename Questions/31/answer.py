@@ -27,15 +27,13 @@ contour_img = np.copy(image)
 
 # Draw the rectangles for every object
 for i, contour in enumerate(contours_poly):
-
     cv2.rectangle(contour_img, (int(bound_rect[i][0]), int(bound_rect[i][1])),
                   (int(bound_rect[i][0]) + int(bound_rect[i][2]), int(bound_rect[i][1]) + bound_rect[i][3]),
                   (255, 0, 0), 2)
-
 
 # Show the input image
 cv2.imshow('Input grayscale image', grayscale_image)
 
 # Show the contours found
-cv2.imshow('Canny filter result', contour_img)
+cv2.imshow('Contours', contour_img)
 cv2.waitKey(0)
