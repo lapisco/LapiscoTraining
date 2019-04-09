@@ -13,9 +13,9 @@ ret, threshold_image = cv2.threshold(grayscale_image, 70, 255, cv2.THRESH_BINARY
 cv2.imshow('Input grayscale image', grayscale_image)
 
 # Show the result of the threshold
-cv2.imshow('Canny filter result', threshold_image)
+cv2.imshow('Threshold result', threshold_image)
 
 cv2.waitKey(0)
 
 # Save the results
-cv2.imwrite('canny_filter_result.jpg', threshold_image)
+cv2.imwrite('threshold_result.jpg', threshold_image)
