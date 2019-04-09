@@ -13,8 +13,8 @@ ret, threshold_image = cv2.threshold(grayscale_image, 0, 255, cv2.THRESH_BINARY_
 # Create the structuring element
 kernel = np.ones((5, 5), np.uint8)
 
-# Apply the dilation
-dilation = cv2.dilate(threshold_image, kernel, iterations=5)
+# Apply the erosion
+erosion = cv2.erode(threshold_image, kernel, iterations=5)
 
 # Show the input image
 cv2.imshow('Input grayscale image', grayscale_image)
@@ -22,6 +22,6 @@ cv2.imshow('Input grayscale image', grayscale_image)
 # Show the result of the threshold
 cv2.imshow('Threshold image', threshold_image)
 
-# Show the result of the dilation
-cv2.imshow('Dilated image', dilation)
+# Show the result of the erosion
+cv2.imshow('Dilated image', erosion)
 cv2.waitKey(0)
