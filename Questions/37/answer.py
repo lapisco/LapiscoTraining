@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 # Read a rgb image
 image = cv2.imread('image.jpg')
