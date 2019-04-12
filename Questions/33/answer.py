@@ -10,8 +10,9 @@ grayscale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # Apply the Canny filter
 canny_image = cv2.Canny(grayscale_image, 80, 180)
 
-# Find how many contours are in the image
-contours, hierarchy = cv2.findContours(canny_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+# Find how many contours are in the image. Note the new parameter cv2.RETR_EXTERNAL. Now the function gives only the
+# external rects
+contours, hierarchy = cv2.findContours(canny_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 # Find a polygon approximation for each contour and then find the bounding rect for every polygon
 contours_poly = [None] * len(contours)
@@ -25,8 +26,7 @@ for i, contour in enumerate(contours):
 # Create a copy of the image to draw the contours
 contour_img = np.copy(image)
 
-# Draw the rectangles for every object, there are two contours for each object because canny find the edges
-# and when findcontours is applied it will find an inner and an outer contour
+# Draw the rectangles for every object
 for i, contour in enumerate(contours_poly):
     cv2.rectangle(contour_img, (int(bound_rect[i][0]), int(bound_rect[i][1])),
                   (int(bound_rect[i][0]) + int(bound_rect[i][2]), int(bound_rect[i][1]) + bound_rect[i][3]),
