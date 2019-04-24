@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
 
 
 def hold_out(df, train_size, shuffle=True):
@@ -78,14 +78,14 @@ if __name__ == '__main__':
     # Split the database using hold out
     X_train, X_test, y_train, y_test = hold_out(features, train_size=0.9)
 
-    # Create a mlp object (Change the hidden_layer parameters to change the topology of the model)
-    mlp = MLPClassifier(hidden_layer_sizes=(5, 3), max_iter=3000)
+    # Create a SVM object (Change the kernels: 'linear', 'poly', 'rbf', 'sigmoid')
+    svm = SVC(kernel='rbf', gamma='auto')
 
     # Train the model
-    mlp.fit(X_train, y_train)
+    svm.fit(X_train, y_train)
 
     # Evaluate in the test data
-    predictions = mlp.predict(X_test)
+    predictions = svm.predict(X_test)
 
     # Convert the results to a list
     predictions = list(predictions)
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     # Split the database using leave one out
     X_train, X_test, y_train, y_test = leave_one_out(features)
 
-    # Apply mlp
+    # Apply SVM
     print('[INFO] Starting leave one out training...')
     count = 0
     sample_count = 0
@@ -110,16 +110,16 @@ if __name__ == '__main__':
         print('[INFO] Training sample {}/{}'.format(sample_count+1, len(y_train)))
         sample_count += 1
 
-        # Create a mlp object (Change the hidden_layer parameters to change the topology of the model)
-        mlp = MLPClassifier(hidden_layer_sizes=(5, 3), max_iter=3000)
+        # Create a SVM object (Change the kernels: 'linear', 'poly', 'rbf', 'sigmoid')
+        svm = SVC(kernel='rbf', gamma='auto')
 
         # Train the model
-        mlp.fit(train_set, label_train)
+        svm.fit(train_set, label_train)
 
         # Evaluate in the test data
         new_list = []
         new_list.append(test_set)
-        prediction = mlp.predict(new_list)
+        prediction = svm.predict(new_list)
 
         if prediction == label_test:
             count += 1
