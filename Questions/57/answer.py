@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 from sklearn.svm import SVC
 
 
@@ -98,6 +99,12 @@ if __name__ == '__main__':
 
     accuracy = count/len(y_test)
     print('Accuracy using hold out: {:.4f}'.format(accuracy))
+
+    # Save the true and the predicted labels to use in question 59 and 60
+    with open('true_and_predict_57.csv', 'w') as outfile:
+        rows = [y_test, predictions]
+        writer = csv.writer(outfile, delimiter=',')
+        writer.writerows(rows)
 
     # Split the database using leave one out
     X_train, X_test, y_train, y_test = leave_one_out(features)

@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import pandas as pd
+import csv
 import matplotlib.pyplot as plt
 from matplotlib import style
 
@@ -160,6 +161,12 @@ if __name__ == '__main__':
 
     accuracy = count/len(y_test)
     print('Accuracy using hold out: {:.4f}'.format(accuracy))
+
+    # Save the true and the predicted labels to use in question 59 and 60
+    with open('true_and_predict_54.csv', 'w') as outfile:
+        rows = [y_test, predictions]
+        writer = csv.writer(outfile, delimiter=',')
+        writer.writerows(rows)
 
     # If you want to plot yours clusters, uncomment the following lines
     # # Plotting starts here

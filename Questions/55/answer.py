@@ -3,6 +3,7 @@ import numpy as np
 import math
 import pandas as pd
 import operator
+import csv
 
 
 def hold_out(df, train_size, shuffle=True):
@@ -123,7 +124,7 @@ if __name__ == '__main__':
     ret, results, neighbors, dist = knn.findNearest(np.asarray(X_test, np.float32), k=3)
 
     # Convert the results to a list
-    predictions = list(results)
+    predictions = [int(x) for x in results]
 
     # Calculates the accuracy using hold out
     count = 0
@@ -134,8 +135,13 @@ if __name__ == '__main__':
     accuracy = count/len(y_test)
     print('Accuracy using hold out: {:.4f}'.format(accuracy))
 
+    # Save the true and the predicted labels to use in question 59 and 60
+    with open('true_and_predict_55.csv', 'w') as outfile:
+        rows = [y_test, predictions]
+        writer = csv.writer(outfile, delimiter=',')
+        writer.writerows(rows)
 
-    # # Split the database using leave one out
+    # Split the database using leave one out
     X_train, X_test, y_train, y_test = leave_one_out(features)
 
     # Apply knn (you can change the number of neighbors)
