@@ -5,7 +5,7 @@ As pastas de cada questão possuem o enunciado da questão bem como a resoluçã
 necessários para rodar o script.
 
 ## Requisitos
-Para instalar todas as bibliotecas necessárias execute no terminal o seguinte comando:
+Para instalar todas as bibliotecas necessárias execute no terminal (no mesmo diretório do projeto) o seguinte comando:
 pip install -r requirements.txt
 
 ## 
