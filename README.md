@@ -1,4 +1,4 @@
-# LapiscoTraining
+# Lapisco Training
 
 Este repositório contém uma série de questões sobre processamento digital de imagens e machine learning.
 As pastas de cada questão possuem o enunciado da questão bem como a resolução na linguagem python e os arquivos
